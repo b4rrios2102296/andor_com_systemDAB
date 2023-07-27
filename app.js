@@ -5,6 +5,7 @@ const sequelize = require('./conexion.js');
 const usuariosRouter = require('./routes/usuario.js');
 const authController = require('./controllers/authController.js'); 
 const doctoresRouter = require('./routes/doctor.js');
+const pacientesRouter = require('./routes/pacientes.js');
 
 //autehtication
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/usuario', usuariosRouter);
 app.post('/login', authController.login);
 app.use('/doctor', doctoresRouter);
+app.use('/paciente', pacientesRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

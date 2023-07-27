@@ -23,7 +23,6 @@ const authController = {
       const token = jwt.sign({ id: usuario.idusuarios, privilegio: usuario.privilegio }, 'sistema', { expiresIn: '1h' });
 
       res.json({ token });
-      console.log(token);
     } catch (error) {
       res.status(500).json({ error: 'Error en el inicio de sesión.' });
     }
