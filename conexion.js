@@ -14,4 +14,3 @@ sequelize.authenticate()
             });
 
 module.exports = sequelize;
-//ayuda
