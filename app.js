@@ -7,6 +7,7 @@ const authController = require('./controllers/authController.js');
 const doctoresRouter = require('./routes/doctor.js');
 const pacientesRouter = require('./routes/pacientes.js');
 const asistentesRouter = require('./routes/asistentes.js');
+const citasRouter = require('./routes/citas.js');
 
 //autehtication
 
@@ -30,6 +31,7 @@ app.post('/login', authController.login);
 app.use('/doctor', doctoresRouter);
 app.use('/paciente', pacientesRouter);
 app.use('/asistente', asistentesRouter);
+app.use('/citas', citasRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
