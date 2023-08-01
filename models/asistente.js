@@ -1,11 +1,9 @@
-const { Model, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../conexion');
-const Usuario = require('./usuario');
+const Usuario = require('./usuariomodel');
 const Doctor = require('./doctor');
 
-class Asistente extends Model {}
-
-Asistente.init({
+const Asistente = sequelize.define('asistentes', {
   idasistentes: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -18,6 +16,7 @@ Asistente.init({
 }, {
   sequelize,
   modelName: 'Asistente',
+  timestamps: false
 });
 
 // Establecer la relación uno a muchos entre Doctor y Asistente
@@ -31,3 +30,4 @@ Asistente.belongsTo(Usuario, {
 });
 
 module.exports = Asistente;
+

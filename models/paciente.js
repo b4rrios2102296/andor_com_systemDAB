@@ -38,7 +38,7 @@ Doctor.hasMany(Paciente, {
 
 // Establecer la relación uno a uno entre Paciente y Usuario
 Paciente.belongsTo(Usuario, {
-  foreignKey: 'usuarios_idusuarios',
+  foreignKey: 'usuarios_idusuarios1',
 });
 
 module.exports = Paciente;
