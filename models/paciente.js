@@ -1,11 +1,9 @@
-const { Model, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../conexion');
 const Usuario = require('./usuariomodel');
 const Doctor = require('./doctor');
 
-class Paciente extends Model {}
-
-Paciente.init({
+const Paciente = sequelize.define('pacientes', {
   idpacientes: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -23,13 +21,14 @@ Paciente.init({
     type: DataTypes.BLOB, // Solo como ejemplo, puedes ajustar el tipo de datos según tus necesidades
     allowNull: true,
   },
-  alergias: {
+  alegias: {
     type: DataTypes.BLOB, // Solo como ejemplo, puedes ajustar el tipo de datos según tus necesidades
     allowNull: true,
-  },
+  }
 }, {
   sequelize,
   modelName: 'Paciente',
+  timestamps: false
 });
 
 // Establecer la relación uno a muchos entre Doctor y Paciente

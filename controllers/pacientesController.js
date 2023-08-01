@@ -6,9 +6,9 @@ const pacientesController = {
     // Obtener el token de autenticación del encabezado de la solicitud
     const authHeader = req.header('Authorization');
 
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-   return res.status(401).json({ error: 'Token de autenticación inválido.' });
-   }
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ error: 'Token de autenticación inválido.' });
+    }
 
     const token = authHeader.replace('Bearer ', '');
 
@@ -23,14 +23,14 @@ const pacientesController = {
       }
 
       // Si el usuario es un paciente, proceder a crear el registro en la tabla de pacientes
-      const { nombrePaciente, doctores_doctorId, RFCpaciente, direccion, alergias } = req.body;
+      const { nombrepacientes, doctores_doctorId, RFCpaciente, direccion, alegias } = req.body;
       const nuevoPaciente = await Paciente.create({
-        nombrePaciente,
+        nombrepacientes,
         doctores_doctorId,
         usuarios_idusuarios: idUsuario, // Usar la ID de usuario como la llave foránea
         RFCpaciente,
         direccion,
-        alergias,
+        alegias,
       });
 
       res.status(201).json(nuevoPaciente);
@@ -41,5 +41,3 @@ const pacientesController = {
 };
 
 module.exports = pacientesController;
-
-
