@@ -21,8 +21,10 @@ const authController = {
 
       // Crear un token de autenticación
       const token = jwt.sign({ id: usuario.idusuarios, privilegio: usuario.privilegio }, 'sistema', { expiresIn: '1h' });
-
-      res.json({ token });
+      console.log(token);
+      const response = { ok: true, message: 'Inicio de sesión exitoso', usuario, token };
+          return res.status(200).json(response);
+          
     } catch (error) {
       res.status(500).json({ error: 'Error en el inicio de sesión.' });
     }
