@@ -52,12 +52,12 @@ const citasController = {
             doctores_doctorId = doctor.doctorId;
           }
     
-          const { fechacitas, status } = req.body;
+          const { fechacitas, status, pacientesid } = req.body;
     
           const nuevaCita = await Cita.create({
             fechacitas,
             status,
-            pacientes_idpacientes,
+            pacientes_idpacientes: pacientesid,
             doctores_doctorId,
           });
     
