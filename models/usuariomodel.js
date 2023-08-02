@@ -21,6 +21,10 @@ const Usuario = sequelize.define('usuarios', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  correo: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 }, {
   timestamps: false,
   hooks: {

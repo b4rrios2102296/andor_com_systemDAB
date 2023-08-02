@@ -13,14 +13,14 @@ const usuariosController = {
 
   // Crear un nuevo usuario
     crearUsuario: async (req, res) => {
-      const { nombreUsuario, contraseña, privilegio } = req.body;
+      const { nombreUsuario, contraseña, privilegio, correo } = req.body;
       try {
         //metodo para comprobar si ya hay otro user
         const existingUser = await Usuario.findOne({ where: { nombreUsuario } });
         if (existingUser) {
           return res.status(400).json({ error: 'El nombre de usuario ya está en uso.' });
         }
-        const users = await Usuario.create({ nombreUsuario, contraseña, privilegio });
+        const users = await Usuario.create({ nombreUsuario, contraseña, privilegio, correo });
         res.status(201).json(users);
       } catch (err) {
         console.log(err);
