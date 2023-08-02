@@ -38,6 +38,64 @@ const pacientesController = {
       res.status(500).json({ error: 'Error en la creación del paciente.' });
     }
   },
+
+  obtenerPacientes: async (req, res) => {
+    try {
+      const pacientes = await Paciente.findAll();
+      res.json(pacientes);
+    } catch (error) {
+      res.status(500).json({ error: 'No se pudo obtener la lista de pacientes.' });
+    }
+  },
+
+  // Obtener información de un paciente específico
+  obtenerPaciente: async (req, res) => {
+    const pacienteId = req.params.id;
+    try {
+      const paciente = await Paciente.findByPk(pacienteId);
+      if (paciente) {
+        res.json(paciente);
+      } else {
+        res.status(404).json({ error: 'Paciente no encontrado.' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'No se pudo obtener la información del paciente.' });
+    }
+  },
+
+  // Actualizar información de un paciente específico
+  actualizarPaciente: async (req, res) => {
+    const pacienteId = req.params.id;
+    try {
+      const [updatedRows] = await Paciente.update(req.body, {
+        where: { pacienteId: pacienteId },
+      });
+      if (updatedRows > 0) {
+        res.json({ message: 'Paciente actualizado exitosamente.' });
+      } else {
+        res.status(404).json({ error: 'Paciente no encontrado.' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'No se pudo actualizar la información del paciente.' });
+    }
+  },
+
+  // Eliminar un paciente específico
+  eliminarPaciente: async (req, res) => {
+    const pacienteId = req.params.id;
+    try {
+      const deletedRows = await Paciente.destroy({
+        where: { pacienteId: pacienteId },
+      });
+      if (deletedRows > 0) {
+        res.json({ message: 'Paciente eliminado exitosamente.' });
+      } else {
+        res.status(404).json({ error: 'Paciente no encontrado.' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'No se pudo eliminar el paciente.' });
+    }
+  },
 };
 
 module.exports = pacientesController;
