@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize');
 
-const sequelize =  new Sequelize('mydb', 'root', 'BadLands2045.', {
+const sequelize =  new Sequelize('mydb', 'root', 'root', {
     host: 'localhost',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    db: 'mydb',
+    port: '3308'
     });
 
 sequelize.authenticate()
